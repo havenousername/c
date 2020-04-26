@@ -11,48 +11,58 @@
 #include <string.h>
 
 struct Person{
-    char name[50], familyName[50];
+    char *name, *familyName;
     int yearOfBirth;
     struct Person * next;
 };
 
-void PushToList(struct Person *next_person,struct Person *previous_person ){
-    next_person = malloc(sizeof(struct Person));
-    strcpy(next_person->name , "Some name");
-    strcpy(next_person->familyName, "Some surname");
-    next_person->yearOfBirth = 1998;
+typedef struct Person person;
+
+
+
+void push(person *head,int year, char *name, char *family_name){
+    person *current = head;
+    while (current->next != NULL ) {
+        current = current->next;
+    }
+    char *n = (char*)malloc(sizeof(name));
+    char *f = (char*)malloc(sizeof(family_name));
+    strcpy(n, name);
+    strcpy(f, family_name);
     
-    printf("%p", previous_person);
-    next_person->next = NULL;
-    printf("%p", previous_person);
-    previous_person->next = next_person;
+    current->next = (person*)malloc(sizeof(person));
+    current->next->yearOfBirth = year;
+    current->next->familyName = f;
+    current->next->name = n;
     
-//    free(next_person);
+    current->next->next = NULL;
+}
+
+void print_list(person *head){
+    person *current = head->next;
+    while (current != NULL) {
+        printf("Name: %s, Family Name: %s, Birth: %d\n", current->name, current->familyName, current->yearOfBirth);
+        current = current->next;
+    }
 };
 
 int main(int argc, const char * argv[]) {
-    struct Person *head;
+    person *head;
     
-    head = malloc(sizeof(struct Person));
-    strcpy(head->name, "Maria");
-    head->yearOfBirth = 2000;
+    head = malloc(sizeof(person));
     head->next = NULL;
-    strcpy(head->familyName, "Namikova");
+//    strncpy(head->name, "Maria", sizeof(char));
+//    head->yearOfBirth = 2000;
     
-    struct Person *person1 = NULL;
-    person1 = malloc(sizeof(struct Person));
-    struct Person *person2 = NULL;
+//    strcpy(head->familyName, "Namikova");
     
-    PushToList(person1, head);
-    PushToList(person2, person1);
+    push(head, 1998, "Mark", "Antonoo");
+    push(head, 1965, "Pablo", "Escabar");
+    push(head, 2001, "Hesys", "Euosas");
     
-    struct Person *current = head;
+    print_list(head);
     
-    while (current != NULL) {
-        printf("%d: , ", current->yearOfBirth);
-        current = current->next;
-    }
-    
+    free(head);
     
     return 0;
 }
