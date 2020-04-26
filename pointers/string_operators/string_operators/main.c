@@ -41,8 +41,8 @@ int main(int argc, const char * argv[]) {
     char str[] = "Hello";
     char str_two[] = "there";
 //    int l = length(&str[0]);
-//    copy_string(&str[0], &str_two[0]);
-    concat_string(str, str_two);
+    copy_string(&str[0], &str_two[0]);
+//    concat_string(str, str_two);
     printf("%s\n", str);
     return 0;
 }

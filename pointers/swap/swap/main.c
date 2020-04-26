@@ -7,8 +7,9 @@
 //
 
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 #include <stdlib.h>
+
 
 
 void swap(char** n,char** s){
@@ -63,7 +64,8 @@ void revert(char *str_one,char *str_two){
 int main(int argc, const char * argv[]) {
     char name[] = "George";
     char secondName[] = "Fillip";
-//    swap(&name, &secondName);
+    swapOne(&name[0], &secondName[0]);
+//    swapTwo(&name, &secondName);
 //    printf("%s %s\n",name, secondName);
 //
 //    char n1[] = "George";
@@ -72,7 +74,7 @@ int main(int argc, const char * argv[]) {
 //    printf("%s %s\n", n1, n2);
 //
     
-    revert(name, secondName);
+//    revert(name, secondName);
     
     printf("%s %s\n", name, secondName);
 
