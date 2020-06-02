@@ -36,5 +36,7 @@ int main(int argc, const char * argv[]) {
     while (fgets(buffer, BUFFER, readFile)) {
         printf("%d\n", atoi(buffer) + 1);
     }
+    
+
     return 0;
 }
