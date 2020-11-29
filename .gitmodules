@@ -1,0 +1,3 @@
+[submodule "ADS/linked_list/ADS/linked_list/main.c"]
+	path = ADS/linked_list/ADS/linked_list/main.c
+	url = git@github.com:havenousername/c.git
