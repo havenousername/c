@@ -215,6 +215,59 @@ int_linked_list* insersionSort(int_linked_list* list) {
     return sorted;
 };
 
+void reverse_iterative(int_linked_list** list) {
+    int_linked_list* current = *list;
+    int_linked_list* prev = NULL;
+    int_linked_list* next;
+    
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    
+    *list = prev;
+}
+
+void reverse_recursive(int_linked_list** list, int_linked_list* temp) {
+    if (temp->next == NULL) {
+        *list = temp;
+        return;
+    }
+    
+    reverse_recursive(list, temp->next);
+    
+    int_linked_list* prev = temp->next;
+    prev->next = temp;
+    temp->next = NULL;
+}
+
+void putEvenFirst(int_linked_list** list) {
+    if (*list == NULL) {
+        return;
+    } else {
+        int_linked_list* orig = *list;
+        int_linked_list* current = *list;
+        current = current->next;
+        int_linked_list* prev = *list;
+        
+        while (current != NULL) {
+            if (current->value % 2 == 0) {
+                prev->next = current->next;
+                current->next = orig;
+                orig = current;
+                current = prev->next;
+            } else {
+                prev = current;
+                current = current->next;
+            }
+        }
+        
+        *list = orig;
+    }
+};
+
 void insersionSortVoid(int_linked_list** list) {
     int_linked_list* sorted = NULL;
     int_linked_list* local = *list;
